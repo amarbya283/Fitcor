@@ -1,0 +1,98 @@
+### Peticiones de prueba de la API de Fitcor
+### Se pueden lanzar desde VS Code con la extensión REST Client, o desde IntelliJ.
+### Cambia @host por http://localhost:5000 para probar en local.
+
+@host = https://api.fitcor.fun
+@email = evaluador1@fitcor.fun
+@password = Fitcor2026!
+
+### Registro de un usuario nuevo (devuelve 201 y un token; 400 si el email ya existe)
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "nuevo@fitcor.fun",
+  "password": "Fitcor2026!"
+}
+
+### Login (devuelve 200 y el token que usan el resto de peticiones)
+# @name login
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+### Guarda el token de la respuesta anterior para reutilizarlo
+@token = {{login.response.body.token}}
+
+### Listar todas las rutinas del usuario
+GET {{host}}/api/routines
+x-auth-token: {{token}}
+
+### Filtrar por nombre (coincidencia parcial, sin distinguir mayúsculas: $regex)
+GET {{host}}/api/routines?name=core
+x-auth-token: {{token}}
+
+### Filtrar por ejercicios concretos ($in)
+GET {{host}}/api/routines?ejercicios=Sentadilla,Plancha
+x-auth-token: {{token}}
+
+### Filtrar por número mínimo de ejercicios ($gte)
+GET {{host}}/api/routines?minEjercicios=3
+x-auth-token: {{token}}
+
+### Filtrar por fecha de creación ($gte y $lte)
+GET {{host}}/api/routines?desde=2026-01-01&hasta=2026-12-31
+x-auth-token: {{token}}
+
+### Crear una rutina (201)
+# @name crear
+POST {{host}}/api/routines
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+  "name": "Rutina de prueba",
+  "description": "Creada desde api.http",
+  "exercises": [
+    { "name": "Sentadilla", "sets": 3, "reps": 12 },
+    { "name": "Plancha", "sets": 3, "reps": 12 }
+  ]
+}
+
+@rutinaId = {{crear.response.body._id}}
+
+### Actualizar la rutina entera (PUT)
+PUT {{host}}/api/routines/{{rutinaId}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+  "name": "Rutina de prueba editada",
+  "exercises": [
+    { "name": "Sentadilla", "sets": 4, "reps": 10 }
+  ]
+}
+
+### Actualización parcial (PATCH): solo el campo enviado
+PATCH {{host}}/api/routines/{{rutinaId}}
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+  "description": "Solo se cambia la descripción"
+}
+
+### Eliminar la rutina (200; un segundo intento devuelve 404)
+DELETE {{host}}/api/routines/{{rutinaId}}
+x-auth-token: {{token}}
+
+### Sin token: 401
+GET {{host}}/api/routines
+
+### Ruta inexistente: 404 del middleware de errores
+GET {{host}}/api/no-existe
+x-auth-token: {{token}}

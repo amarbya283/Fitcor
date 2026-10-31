@@ -1,0 +1,318 @@
+/* Estilos de la página de Clubes (favoritos + mapa de gimnasios). Prefijo
+   clubs- en todas las clases para evitar colisiones con otros componentes. */
+
+.clubs-page {
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 16px 0;
+  font-family: var(--font-display);
+}
+
+/* --- Cabecera "MIS CLUBES FAVORITOS" --- */
+
+.clubs-header {
+  background: linear-gradient(90deg, var(--brand-orange) 60%, var(--brand-orange-light) 100%);
+  padding: 18px 0 0 0;
+  border-radius: 0 0 24px 24px;
+  margin-bottom: 18px;
+}
+
+.clubs-header-title {
+  font-weight: 900;
+  font-size: 19px;
+  color: #fff;
+  margin-left: 18px;
+  margin-bottom: 10px;
+}
+
+.clubs-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 0 0 18px 18px;
+}
+
+.clubs-card {
+  min-width: 170px;
+  background: #222;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.clubs-card-img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+.clubs-card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--brand-purple);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 12px;
+  padding: 2px 8px;
+  font-weight: 700;
+}
+
+.clubs-card-name {
+  color: #fff;
+  font-weight: 900;
+  font-size: 16px;
+  margin: 8px 0 0 10px;
+}
+
+.clubs-card-city {
+  color: #fff;
+  font-size: 13px;
+  margin: 0 0 10px 10px;
+}
+
+.clubs-add-card {
+  min-width: 170px;
+  border: 2px dashed #fff;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  cursor: pointer;
+}
+
+.clubs-add-icon {
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.clubs-add-label {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* --- Modal del mapa --- */
+
+.clubs-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clubs-modal-box {
+  background: #fff;
+  border-radius: var(--radius-md);
+  max-width: 500px;
+  width: 95vw;
+  padding: 0;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.clubs-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  font-size: 28px;
+  color: var(--brand-orange);
+  cursor: pointer;
+  z-index: 10;
+  font-weight: 900;
+  line-height: 1;
+  border-radius: var(--radius-md);
+  padding: 2px 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.clubs-map-wrapper {
+  height: 420px;
+  width: 100%;
+}
+
+.clubs-map-container {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.clubs-popup-title {
+  font-weight: 900;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.clubs-popup-calle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.clubs-popup-btn {
+  background: var(--brand-purple);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* --- Gráfica de horas populares --- */
+
+.clubs-hours {
+  background: #fff;
+  border-radius: var(--radius-md);
+  margin: 0 14px 18px 14px;
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
+}
+
+.clubs-hours-title {
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.clubs-bars {
+  display: flex;
+  align-items: flex-end;
+  height: 90px;
+  gap: 6px;
+  margin: 18px 0 8px 0;
+  justify-content: center;
+}
+
+.clubs-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22px;
+}
+
+.clubs-bar {
+  height: var(--bar-height);
+  width: 16px;
+  border-radius: 6px;
+  background: var(--brand-purple);
+  margin-bottom: 4px;
+  transition: height 0.3s;
+}
+
+.clubs-bar--destacada {
+  background: var(--brand-orange);
+}
+
+.clubs-bar-label {
+  font-size: 13px;
+  color: #888;
+  font-weight: 700;
+}
+
+.clubs-bar-label--destacada {
+  color: var(--brand-orange);
+  font-weight: 900;
+}
+
+.clubs-hours-note {
+  color: var(--brand-orange);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* --- Servicios / instalaciones --- */
+
+.clubs-services {
+  margin: 0 14px 0 14px;
+}
+
+.clubs-section-title {
+  font-weight: 900;
+  font-size: 15px;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.clubs-section-title--spaced {
+  margin: 18px 0 10px 0;
+}
+
+.clubs-list {
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 10px;
+}
+
+.clubs-list-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0 12px 14px;
+  border-bottom: 1px solid #f2f2f2;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.clubs-list-item--last {
+  border-bottom: none;
+}
+
+.clubs-list-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.clubs-list-spacer {
+  flex: 1;
+}
+
+.clubs-list-arrow {
+  color: var(--brand-orange);
+  font-size: 18px;
+  margin-right: 14px;
+}
+
+/* --- Botón "BUSCAR UN GIMNASIO" --- */
+
+.clubs-search-wrapper {
+  margin: 30px 14px 0 14px;
+}
+
+.clubs-search-btn {
+  width: 100%;
+  background: var(--brand-purple);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 16px 0;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.clubs-search-icon {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.clubs-bottom-spacer {
+  height: 80px;
+}

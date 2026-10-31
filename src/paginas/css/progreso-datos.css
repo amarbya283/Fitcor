@@ -1,0 +1,794 @@
+/* Estilos de la pantalla de Progreso > Mis datos (src/paginas/ProgresoDatos.js).
+   Todas las clases van prefijadas con "progreso-" para evitar colisiones con
+   otros componentes.
+
+   Nota sobre variables CSS custom: algunos valores dependen de cálculos hechos
+   en cada render (posición del sprite de insignias según fila/columna, posición
+   del marcador de IMC según su valor, estado del interruptor Health Connect).
+   Para esos casos se inyecta SOLO el valor calculado como variable CSS desde
+   el style={{}} del JSX (mismo patrón que Login.js con --login-bg-image), y el
+   resto de propiedades estáticas viven aquí. */
+
+.progreso-container {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: var(--font-display);
+  /* --sprite-insignias se define aquí (y no se usa directamente en este
+     elemento) porque su valor depende de require() en build-time (webpack
+     resuelve la ruta con hash del archivo); los sprites hijos la heredan
+     por herencia normal de custom properties. */
+}
+
+/* Tabs superiores */
+.progreso-tabs {
+  display: flex;
+  border-bottom: 1.5px solid #eee;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.progreso-tab {
+  flex: 1;
+  text-align: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: #222;
+  cursor: pointer;
+  padding: 12px 0 8px 0;
+  border-bottom: 4px solid transparent;
+  transition: all 0.2s;
+  letter-spacing: 0.2px;
+}
+
+.progreso-tab--activa {
+  color: var(--brand-orange);
+  border-bottom: 4px solid var(--brand-orange);
+}
+
+/* Sprite de insignias compartido (imagenesinsignias.png). El fondo se inyecta
+   como variable CSS a nivel del contenedor (--sprite-insignias); el tamaño de
+   la grilla (3 columnas x 4 filas) es fijo y por eso vive aquí, estático.
+   La posición SÍ varía por insignia y se inyecta como --sprite-x / --sprite-y. */
+.progreso-sprite-insignia {
+  background-image: var(--sprite-insignias);
+  background-size: 300% 400%;
+  background-position: var(--sprite-x, 0%) var(--sprite-y, 0%);
+  background-repeat: no-repeat;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-orange);
+}
+
+.progreso-sprite-insignia--objetivo {
+  width: 64px;
+  height: 64px;
+}
+
+.progreso-sprite-insignia--racha {
+  width: 54px;
+  height: 54px;
+  margin-bottom: 4px;
+  filter: grayscale(1) brightness(1.2);
+  border: 2.5px solid #eee;
+}
+
+.progreso-sprite-insignia--racha.progreso-sprite-insignia--conseguido {
+  filter: none;
+  border: 2.5px solid var(--brand-orange);
+}
+
+/* El modal "Ver todo" usa la imagen individual de cada logro (logro.img),
+   no el sprite compartido: los logros nunca tuvieron col/fila válidos para
+   recortar imagenesinsignias.png, esa imagen es solo para las rachas. */
+.progreso-modal-logro-img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin-bottom: 6px;
+  transition: box-shadow 0.18s, filter 0.2s;
+  box-shadow: var(--shadow-orange);
+  background: #fff;
+  border-radius: 8px;
+  filter: grayscale(1) brightness(1.2);
+}
+
+.progreso-modal-logro-img--conseguido {
+  filter: none;
+}
+
+/* Próximo objetivo */
+.progreso-objetivo-card {
+  background: #f6f6f6;
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.progreso-objetivo-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.progreso-objetivo-info {
+  flex: 1;
+}
+
+.progreso-objetivo-label {
+  font-weight: 900;
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.progreso-objetivo-bar {
+  height: 4px;
+  background: var(--brand-orange);
+  border-radius: 2px;
+  width: 120px;
+  margin: 6px 0 10px 0;
+}
+
+.progreso-objetivo-titulo {
+  font-weight: 900;
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.progreso-objetivo-desc {
+  color: #444;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+/* Rachas */
+.progreso-rachas-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.progreso-rachas-label {
+  font-weight: 900;
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.progreso-rachas-desc {
+  color: #444;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.progreso-rachas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.progreso-racha-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progreso-racha-titulo {
+  font-weight: 900;
+  font-size: 13px;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.progreso-racha-titulo--conseguido {
+  color: #222;
+}
+
+.progreso-racha-fecha {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Últimos logros */
+.progreso-logros-card {
+  background: #f6f6f6;
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+  padding: 0 0 18px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.progreso-logros-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 18px 0 18px;
+}
+
+.progreso-logros-titulo {
+  font-weight: 900;
+  font-size: 17px;
+  color: #222;
+}
+
+.progreso-logros-vertodo {
+  color: var(--brand-orange);
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.progreso-logros-list {
+  display: flex;
+  gap: 12px;
+  padding: 18px 18px 0 18px;
+  overflow-x: auto;
+  min-height: 110px;
+}
+
+.progreso-logros-empty {
+  width: 100%;
+  text-align: center;
+  color: #bbb;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90px;
+}
+
+.progreso-logros-empty-icon {
+  font-size: 38px;
+  margin-bottom: 6px;
+}
+
+/* Tarjeta de logro individual: el hover/elevación que antes se hacía con
+   onMouseEnter/onMouseLeave/onTouchStart/onTouchEnd manipulando
+   e.currentTarget.style.transform directamente ahora es CSS declarativo puro
+   (:hover cubre ratón, :active cubre toque/pulsación en móvil). */
+.progreso-logro-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  min-width: 90px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  transition: transform 0.18s;
+  cursor: pointer;
+}
+
+.progreso-logro-card:hover,
+.progreso-logro-card:active {
+  transform: translateY(-7px) scale(1.08);
+}
+
+.progreso-logro-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 6px;
+  transition: box-shadow 0.18s;
+  box-shadow: var(--shadow-orange);
+  background: #fff;
+  border-radius: 8px;
+  filter: grayscale(1) brightness(1.2);
+}
+
+.progreso-logro-img--conseguido {
+  filter: none;
+}
+
+.progreso-logro-titulo {
+  font-weight: 900;
+  font-size: 13px;
+  color: #222;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.progreso-logro-fecha {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Modales genéricos */
+.progreso-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progreso-modal-overlay--top {
+  z-index: 2000;
+}
+
+.progreso-modal-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.progreso-modal-card--center {
+  align-items: center;
+}
+
+.progreso-modal-card--sm {
+  min-width: 280px;
+}
+
+.progreso-modal-card--md {
+  min-width: 300px;
+}
+
+.progreso-modal-card--lg {
+  min-width: 340px;
+  max-width: 500px;
+}
+
+.progreso-modal-titulo {
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--brand-orange);
+  margin-bottom: 8px;
+}
+
+.progreso-btn-primary {
+  background: var(--brand-orange);
+  color: #fff;
+  font-weight: 900;
+  font-size: 17px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0;
+  width: 100%;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.progreso-btn-secondary {
+  background: #eee;
+  color: #222;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 0;
+  width: 100%;
+  margin-top: 0;
+  cursor: pointer;
+}
+
+/* Modal de logros completos */
+.progreso-modal-logros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 8px;
+}
+
+.progreso-modal-logro-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+}
+
+.progreso-modal-logro-titulo {
+  font-weight: 900;
+  font-size: 13px;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.progreso-modal-logro-titulo--conseguido {
+  color: #222;
+}
+
+.progreso-modal-logro-fecha {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Tarjeta compartida (composición corporal / IMC): mismo fondo, radio, sombra
+   y relleno en ambas secciones. */
+.progreso-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 18px 18px 10px 18px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.progreso-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progreso-card-header-label {
+  font-weight: 700;
+  color: #888;
+  font-size: 15px;
+}
+
+.progreso-card-arrow {
+  color: var(--brand-orange);
+  font-size: 22px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* Tarjetas Peso / Calorías / Pasos */
+.progreso-stats-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+  padding: 0;
+}
+
+.progreso-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+}
+
+.progreso-stat-row--primero {
+  padding: 18px 18px 0 18px;
+}
+
+.progreso-stat-label {
+  color: #888;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.progreso-stat-value {
+  font-weight: 900;
+  font-size: 28px;
+  color: #222;
+  line-height: 1;
+}
+
+.progreso-stat-value--grande {
+  font-size: 32px;
+}
+
+.progreso-stat-unit {
+  font-weight: 400;
+  font-size: 16px;
+  color: #888;
+}
+
+.progreso-stat-unit--grande {
+  font-size: 18px;
+}
+
+.progreso-stat-chart-wrap {
+  padding: 0 18px 12px 18px;
+}
+
+.progreso-stat-chart-wrap--ultimo {
+  padding: 0 18px 18px 18px;
+}
+
+/* Composición corporal */
+.progreso-compo-fecha {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.progreso-compo-imc {
+  color: var(--brand-orange);
+  font-weight: 900;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.progreso-compo-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.progreso-compo-legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.progreso-compo-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.progreso-compo-dot--grasa {
+  background: var(--brand-orange);
+}
+
+.progreso-compo-dot--muscular {
+  background: #4de37a;
+}
+
+.progreso-compo-dot--osea {
+  background: #222;
+}
+
+.progreso-compo-legend-text {
+  font-size: 15px;
+  color: #222;
+  font-weight: 700;
+}
+
+.progreso-compo-legend-value {
+  margin-left: 8px;
+  color: #222;
+  font-weight: 700;
+}
+
+.progreso-compo-svg {
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+/* Círculos del gráfico de composición corporal: los atributos SVG
+   strokeDasharray/strokeDashoffset se calculan en cada render según
+   masaGrasa/masaMuscular/masaOsea y se dejan como atributos JSX normales
+   (no son propiedades CSS movibles); lo estático es esto. */
+.progreso-circulo-composicion {
+  stroke-linecap: butt;
+  transition: stroke-dasharray 0.7s;
+}
+
+/* Modal de estado físico */
+.progreso-modal-estado-options {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.progreso-btn-estado {
+  background: #fff;
+  color: var(--brand-orange);
+  border: 2px solid var(--brand-orange);
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: none;
+  margin-bottom: 4px;
+}
+
+.progreso-btn-estado--seleccionado {
+  background: var(--brand-orange);
+  color: #fff;
+  box-shadow: var(--shadow-orange);
+}
+
+/* IMC */
+.progreso-imc-valor {
+  font-weight: 900;
+  font-size: 32px;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.progreso-imc-subtitulo {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.progreso-imc-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.progreso-imc-bar-track {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  border-radius: 4px;
+  position: relative;
+}
+
+/* El marcador se posiciona según el valor de imc (variable de estado); solo
+   ese valor calculado se inyecta como variable CSS, el resto es estático. */
+.progreso-imc-marker {
+  position: absolute;
+  left: var(--imc-marker-left);
+  top: -6px;
+  width: 18px;
+  height: 18px;
+  background: var(--brand-orange);
+  border-radius: 9px;
+  border: 2px solid #fff;
+  box-shadow: var(--shadow-orange);
+  transition: left 0.3s;
+}
+
+.progreso-imc-bar-segment {
+  position: absolute;
+  top: 0;
+  width: 25%;
+  height: 6px;
+  border-radius: 4px;
+}
+
+.progreso-imc-bar-segment--1 {
+  left: 0;
+  background: #4de3d1;
+}
+
+.progreso-imc-bar-segment--2 {
+  left: 25%;
+  background: #4de37a;
+}
+
+.progreso-imc-bar-segment--3 {
+  left: 50%;
+  background: #ffd700;
+}
+
+.progreso-imc-bar-segment--4 {
+  left: 75%;
+  background: var(--brand-orange);
+}
+
+.progreso-imc-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.progreso-imc-labels-obesidad {
+  color: var(--brand-orange);
+  font-weight: 700;
+}
+
+/* Modal de IMC */
+.progreso-imc-label {
+  font-weight: 700;
+  font-size: 15px;
+  color: #222;
+}
+
+.progreso-imc-input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1.5px solid #eee;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+/* Health Connect */
+.progreso-health-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progreso-health-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progreso-health-icon {
+  font-size: 24px;
+  color: var(--brand-orange);
+}
+
+.progreso-health-titulo {
+  font-weight: 900;
+  font-size: 17px;
+}
+
+.progreso-health-toggle-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.progreso-health-checkbox {
+  display: none;
+}
+
+/* Interruptor: el estado (healthConnect) es un booleano simple, así que se
+   resuelve con una clase modificadora en vez de variables CSS. */
+.progreso-toggle {
+  width: 38px;
+  height: 22px;
+  background: #eee;
+  border-radius: var(--radius-md);
+  position: relative;
+  display: inline-block;
+  margin-left: 8px;
+  transition: background 0.2s;
+}
+
+.progreso-toggle--activo {
+  background: var(--brand-orange);
+}
+
+.progreso-toggle-knob {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 9px;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid #ddd;
+  transition: left 0.2s;
+}
+
+.progreso-toggle-knob--activo {
+  left: 18px;
+}
+
+.progreso-spacer {
+  height: 120px;
+}
+
+/* Modal Health Connect */
+.progreso-health-modal-icon {
+  font-size: 40px;
+  color: var(--brand-orange);
+}
+
+.progreso-health-modal-titulo {
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--brand-orange);
+  text-align: center;
+}
+
+.progreso-health-modal-texto {
+  color: #444;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 8px;
+}

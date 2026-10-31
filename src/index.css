@@ -1,0 +1,86 @@
+/*
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+*/
+:root {
+  /* Marca */
+  --brand-orange: #FF8A00;
+  --brand-orange-dark: #E06D00;
+  --brand-orange-light: #FFB347;
+  --brand-purple: #7C3AED;
+  --brand-purple-dark: #5B21B6;
+
+  /* Acento secundario (no es de marca, pero se repite bastante: pagos al día, iconos de progreso) */
+  --accent-teal: #4ED6C4;
+
+  /* Fondo general (fuera de las tarjetas) */
+  --bg-dark: #0B0B0F;
+  --bg-dark-soft: #17171F;
+
+  /* Tipografía */
+  --font-display: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.14);
+  --shadow-lg: 0 14px 40px rgba(0,0,0,0.22);
+  --shadow-orange: 0 6px 20px rgba(255,138,0,0.28);
+
+  /* Radios */
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background: #fff;
+}
+
+/* Por defecto: móvil */
+body {
+  font-size: 15px;
+}
+#root {
+  padding: 0 4px;
+}
+
+@media (min-width: 601px) and (max-width: 1023px) {
+  body {
+    font-size: 17px;
+  }
+  #root {
+    padding: 0 18px;
+  }
+}
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+  #root {
+    padding: 0 32px;
+  }
+}

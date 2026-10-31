@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "687a59e9b29caf00c4d1ebba",
+    "name": "Abs",
+    "exercises": [
+      {
+        "name": "Abdomen (Barra con pesas)",
+        "_id": "687a59e9b29caf00c4d1ebbb"
+      },
+      {
+        "name": "Abdomen (Landmine)",
+        "_id": "687a59e9b29caf00c4d1ebbc"
+      },
+      {
+        "name": "Abdominal Total",
+        "_id": "687a59e9b29caf00c4d1ebbd"
+      }
+    ],
+    "user": "687a59a0b29caf00c4d1ebb4",
+    "createdAt": "2025-07-18T14:27:53.302Z",
+    "updatedAt": "2025-07-18T14:27:53.302Z",
+    "__v": 0
+  }
+]

@@ -1,0 +1,516 @@
+/* Estilos de la pantalla de Rutinas (crear plantilla / mis plantillas).
+   Todas las clases van prefijadas con "rutinas-" para no colisionar con
+   clases genéricas de otros componentes cargados globalmente. */
+
+/* --- Layout general --- */
+.rutinas-page {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: var(--font-display);
+}
+
+/* Modificador: páginas que tienen un botón fijo pegado abajo (necesitan
+   espacio extra al final y position:relative para que el botón fixed
+   quede acotado visualmente al ancho de la página) */
+.rutinas-page--con-boton-fijo {
+  padding-bottom: 90px;
+  position: relative;
+}
+
+.rutinas-header-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.rutinas-back-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  margin-right: 8px;
+  cursor: pointer;
+  color: var(--brand-orange);
+}
+
+.rutinas-titulo-pagina {
+  margin: 0;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -1px;
+  color: #222;
+}
+
+.rutinas-titulo-seccion {
+  margin: 0;
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: -1px;
+  color: #222;
+}
+
+.rutinas-spacer {
+  height: 120px;
+}
+
+/* --- Tabs (Crear plantilla / Mis plantillas) --- */
+.rutinas-tabs {
+  display: flex;
+  border-bottom: 1.5px solid #eee;
+  margin-bottom: 18px;
+}
+
+.rutinas-tab {
+  flex: 1;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: #222;
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 4px solid transparent;
+  transition: all 0.2s;
+}
+
+.rutinas-tab-activa {
+  color: var(--brand-orange);
+  border-bottom: 4px solid var(--brand-orange);
+}
+
+/* --- Formulario "Crear plantilla" --- */
+.rutinas-editando-label {
+  font-weight: 900;
+  font-size: 16px;
+  color: var(--brand-purple);
+  margin-bottom: 10px;
+}
+
+.rutinas-form-group {
+  margin-bottom: 18px;
+}
+
+.rutinas-label {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--brand-orange);
+}
+
+.rutinas-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid #eee;
+  margin-top: 6px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.rutinas-vacio {
+  color: #aaa;
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+.rutinas-ejercicio-agregado {
+  background: #f6f7fb;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botón para quitar un ejercicio del formulario. */
+.rutinas-btn-quitar-ejercicio {
+  background: transparent;
+  border: none;
+  color: var(--brand-purple);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.rutinas-btn-secundario {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid var(--brand-purple);
+  color: var(--brand-purple);
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: var(--radius-md);
+  padding: 10px 0;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+/* Botón guardar / guardar cambios: el estado deshabilitado (sin nombre o
+   sin ejercicios) se resuelve con :disabled, no con JS condicional */
+.rutinas-btn-guardar {
+  width: 100%;
+  background: var(--brand-purple);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 14px 0;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.rutinas-btn-guardar:disabled {
+  background: #d1b3e0;
+  cursor: not-allowed;
+}
+
+.rutinas-btn-cancelar {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--brand-purple);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 12px 0;
+  margin-top: 6px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* --- "Mis plantillas" --- */
+.rutinas-mis-plantillas {
+  margin-top: 18px;
+}
+
+.rutinas-loading {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.rutinas-error {
+  color: var(--brand-orange);
+  font-size: 16px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.rutinas-vacio-plantillas {
+  color: #aaa;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.rutinas-card {
+  background: #f6f7fb;
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.rutinas-card-nombre {
+  font-weight: 900;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.rutinas-card-meta {
+  color: #888;
+  font-size: 14px;
+}
+
+.rutinas-btn-editar {
+  background: none;
+  border: none;
+  color: var(--brand-purple);
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-right: 14px;
+  cursor: pointer;
+}
+
+.rutinas-btn-borrar {
+  background: none;
+  border: none;
+  color: var(--brand-orange);
+  font-size: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* --- Pantalla "Añadir ejercicios" --- */
+.rutinas-input-busqueda {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid #eee;
+  margin-bottom: 18px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  background: #f6f7fb;
+}
+
+.rutinas-ordenar-por {
+  margin-bottom: 18px;
+  color: var(--brand-orange);
+  font-weight: 700;
+  text-align: right;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.rutinas-ejercicio-row {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.rutinas-ejercicio-img {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  margin: 8px;
+}
+
+.rutinas-ejercicio-info {
+  flex: 1;
+  padding: 0 8px;
+}
+
+.rutinas-ejercicio-nombre {
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.rutinas-ejercicio-meta {
+  font-size: 13px;
+  color: #888;
+}
+
+.rutinas-btn-check {
+  background: none;
+  border: none;
+  color: var(--brand-purple);
+  font-size: 28px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+/* Botón fijo "Añadir ejercicios" al fondo de la pantalla. El estado
+   deshabilitado (ningún ejercicio seleccionado) se resuelve con :disabled */
+.rutinas-btn-añadir {
+  width: 100%;
+  background: var(--brand-purple);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 14px 0;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: fixed;
+  left: 50%;
+  bottom: 70px;
+  transform: translateX(-50%);
+  max-width: 430px;
+  z-index: 100;
+}
+
+.rutinas-btn-añadir:disabled {
+  background: #d1b3e0;
+  cursor: not-allowed;
+}
+
+/* --- Modales (overlay compartido) --- */
+.rutinas-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modificador: el modal de detalle de ejercicio va por encima del de
+   detalle de rutina cuando ambos podrían coexistir */
+.rutinas-modal-overlay--ejercicio {
+  z-index: 300;
+}
+
+/* Modal: detalle de ejercicio */
+.rutinas-modal-ejercicio {
+  background: #fff;
+  border-radius: var(--radius-md);
+  max-width: 370px;
+  width: 95vw;
+  padding: 0;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.rutinas-modal-close-left {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: var(--brand-orange);
+  cursor: pointer;
+  z-index: 2;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.rutinas-arrow-icon {
+  font-weight: 900;
+  font-size: 36px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.rutinas-modal-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.rutinas-modal-body {
+  padding: 20px;
+}
+
+.rutinas-divider {
+  border-bottom: 3px solid var(--brand-orange);
+  width: 40px;
+  margin: 0 auto 12px auto;
+}
+
+.rutinas-modal-title {
+  font-weight: 900;
+  font-size: 19px;
+  text-align: center;
+  margin: 12px 0 10px 0;
+  text-transform: uppercase;
+}
+
+.rutinas-dots {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.rutinas-dot-activo,
+.rutinas-dot-inactivo {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  margin: 0 2px;
+}
+
+.rutinas-dot-activo {
+  background: var(--brand-orange);
+}
+
+.rutinas-dot-inactivo {
+  background: #eee;
+}
+
+.rutinas-section-label {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.rutinas-lista-instrucciones {
+  padding-left: 18px;
+  margin-bottom: 18px;
+}
+
+.rutinas-instruccion-item {
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #222;
+}
+
+.rutinas-btn-añadir-detalle {
+  width: 100%;
+  background: var(--brand-purple);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 14px 0;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* Modal: detalle de rutina guardada */
+.rutinas-modal-rutina {
+  background: #fff;
+  border-radius: var(--radius-md);
+  max-width: 350px;
+  width: 90vw;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.rutinas-modal-close-right {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--brand-orange);
+  cursor: pointer;
+}
+
+.rutinas-modal-rutina-titulo {
+  font-weight: 900;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.rutinas-modal-rutina-count {
+  color: #888;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.rutinas-lista-ejercicios {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.rutinas-ejercicio-item {
+  background: #f6f7fb;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}

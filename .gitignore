@@ -1,0 +1,80 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+/backend/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+/dist
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/backend/.env
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+logs/
+
+# runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# misc
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+Thumbs.db
+
+# temporary folders
+tmp/
+temp/
+
+# deploy folder
+/deploy
+
+# Optional: MacOS
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Optional: Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+# Optional: Linux
+.directory
+
+# Lock files (opcional, algunos prefieren subirlos)
+# package-lock.json
+# yarn.lock
+
+# Debug
+.eslintcache
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

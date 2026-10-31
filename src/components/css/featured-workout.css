@@ -1,0 +1,64 @@
+/* Estilos para FeaturedWorkout */
+.featured-workout {
+  margin-bottom: 18px;
+}
+.fw-title {
+  font-weight: 700;
+  color: var(--brand-orange-dark);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+}
+.fw-see-all {
+  color: var(--brand-orange);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.fw-banner {
+  background: linear-gradient(120deg, var(--brand-orange-dark) 0%, var(--brand-orange) 65%, var(--brand-orange-light) 100%);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-orange);
+}
+.fw-desc {
+  font-size: 1rem;
+}
+.fw-details {
+  font-size: 0.85rem;
+  color: #fff;
+}
+.fw-access {
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-dark) 100%);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 16px;
+  box-shadow: 0 4px 14px rgba(124,58,237,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.fw-access:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(124,58,237,0.45);
+}
+.featured-workout, .fw-banner, .fw-access {
+  border-radius: var(--radius-md);
+  font-family: var(--font-body) !important;
+}
+.fw-img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-right: 16px;
+  box-shadow: var(--shadow-sm);
+} 

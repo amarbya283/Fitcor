@@ -1,0 +1,382 @@
+/* Estilos para Home */
+
+/* Contenedor principal de Home (usado por Home.js) */
+.main-content {
+  width: 100%;
+  max-width: 100%;
+  margin: 16px 0 0 0;
+  padding: 12px 0 80px 0;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+body, .home-bg, .home-container, .main-content, .badge-banner, .featured-workout, .benefits-banner, .coach-tips, .week-visits, .bottom-nav, .nav-btn, .fw-access, .chat-btn, .profile-header, .profile-options, .profile-option {
+  font-family: var(--font-body) !important;
+}
+
+.home-container {
+  border-radius: var(--radius-lg);
+}
+
+.main-content, .badge-banner, .featured-workout, .benefits-banner, .coach-tips, .week-visits, .profile-header, .profile-options, .profile-option {
+  border-radius: var(--radius-md);
+}
+
+.nav-btn, .fw-access, .chat-btn, .profile-option, .back-btn {
+  border-radius: var(--radius-md) !important;
+}
+
+/* Mejoras para móviles. Nota: .bottom-nav NO se toca aquí: BottomNav.css ya
+   controla su forma de "píldora flotante" en todos los breakpoints. */
+
+.promo-banner,
+.workout-card,
+.badge-banner,
+.featured-workout,
+.benefits-banner,
+.coach-tips,
+.week-visits {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 431px) {
+  .main-content,
+  .promo-banner,
+  .workout-card,
+  .badge-banner,
+  .featured-workout,
+  .benefits-banner,
+  .coach-tips,
+  .week-visits {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar-absolute {
+    top: 8px;
+    left: 8px;
+  }
+  .avatar-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+}
+
+.ventajas-carrusel {
+  margin: 24px 0 18px 0;
+  overflow-x: auto;
+  display: flex;
+  gap: 0;
+  padding: 0;
+  scroll-snap-type: x mandatory;
+}
+.ventaja-banner {
+  min-width: 100%;
+  max-width: 100%;
+  height: 140px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  background-image: var(--tip-img);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.ventaja-banner:hover {
+  transform: scale(1.01);
+  box-shadow: var(--shadow-orange);
+}
+.ventaja-text {
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.2rem;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  width: 100%;
+  padding: 16px 20px 14px 20px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  letter-spacing: 0.2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.ventaja-modal-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.25);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ventaja-modal {
+  background: #fff;
+  border-radius: var(--radius-md);
+  max-width: 350px;
+  width: 92vw;
+  box-shadow: var(--shadow-lg);
+  padding: 0 0 18px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ventaja-modal img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.ventaja-modal-title {
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: var(--brand-orange-dark);
+  margin: 18px 0 8px 0;
+  font-family: var(--font-display);
+}
+.ventaja-modal-desc {
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+.ventaja-modal-close {
+  background: linear-gradient(135deg, var(--brand-orange-dark), var(--brand-orange));
+  color: #fff;
+  font-weight: 900;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 0;
+  width: 80%;
+  margin-top: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow-orange);
+  transition: transform 0.15s;
+}
+.ventaja-modal-close:hover {
+  transform: translateY(-1px);
+}
+
+/* Por defecto, estilos para móviles (max-width: 600px) */
+.main-content, .badge-banner, .featured-workout, .benefits-banner, .coach-tips, .week-visits {
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 0;
+  font-size: 15px;
+}
+.ventaja-modal {
+  max-width: 98vw;
+  padding: 0 0 10px 0;
+}
+.ventaja-modal img {
+  height: 110px;
+}
+.ventaja-modal-title {
+  font-size: 1.05rem;
+}
+.ventaja-modal-desc {
+  font-size: 0.95rem;
+}
+.fw-title, .tips-title, .week-title {
+  font-size: 1rem;
+}
+.fw-desc, .fw-details {
+  font-size: 0.95rem;
+}
+.fw-banner {
+  min-height: 60px;
+}
+.ventaja-banner, .ventaja-modal img {
+  height: 110px;
+}
+.bottom-nav {
+  height: 62px;
+  font-size: 13px;
+}
+
+/* Para tablets y ordenadores (min-width: 601px) */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .main-content, .badge-banner, .featured-workout, .benefits-banner, .coach-tips, .week-visits {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size: 17px;
+    border-radius: var(--radius-md);
+  }
+  .ventaja-modal {
+    max-width: 420px;
+    padding: 0 0 18px 0;
+  }
+  .ventaja-modal img {
+    height: 160px;
+  }
+  .ventaja-modal-title {
+    font-size: 1.25rem;
+  }
+  .ventaja-modal-desc {
+    font-size: 1.05rem;
+  }
+  .fw-title, .tips-title, .week-title {
+    font-size: 1.15rem;
+  }
+  .fw-desc, .fw-details {
+    font-size: 1.05rem;
+  }
+  .fw-banner {
+    min-height: 80px;
+  }
+  .ventaja-banner, .ventaja-modal img {
+    height: 160px;
+  }
+  .bottom-nav {
+    height: 70px;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content, .badge-banner, .featured-workout, .benefits-banner, .coach-tips, .week-visits {
+    max-width: 760px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
+    font-size: 18px;
+    border-radius: var(--radius-md);
+  }
+  .ventaja-modal {
+    max-width: 520px;
+    padding: 0 0 24px 0;
+  }
+  .ventaja-modal img {
+    height: 200px;
+  }
+  .ventaja-modal-title {
+    font-size: 1.4rem;
+  }
+  .ventaja-modal-desc {
+    font-size: 1.15rem;
+  }
+  .fw-title, .tips-title, .week-title {
+    font-size: 1.25rem;
+  }
+  .fw-desc, .fw-details {
+    font-size: 1.1rem;
+  }
+  .fw-banner {
+    min-height: 100px;
+  }
+  .ventaja-banner, .ventaja-modal img {
+    height: 200px;
+  }
+  .bottom-nav {
+    height: 76px;
+    font-size: 16px;
+  }
+}
+
+/* --- Acceso QR y modal (Home.js) --- */
+
+/* Banner de acceso tipo SynergyFit, Basic-Fit, etc. */
+.home-acceso-wrap {
+  width: 100%;
+  margin: 24px 0;
+}
+
+.home-acceso-banner {
+  width: 100%;
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-dark) 100%);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+}
+
+.home-acceso-banner-label {
+  color: white;
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
+/* Modal QR */
+.home-qr-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-qr-modal-box {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+}
+
+/* QR grande a pantalla completa que el torno del gimnasio puede escanear */
+.home-qr-modal-code {
+  margin-bottom: 24px;
+}
+
+.home-qr-modal-title {
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--brand-purple);
+  margin-bottom: 8px;
+}
+
+.home-qr-modal-member {
+  font-size: 16px;
+  color: #888;
+}
+
+.home-qr-modal-close {
+  margin-top: 24px;
+  background: var(--brand-purple);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 32px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* --- Título del carrusel de VENTAJAS (BenefitsBanner.js) --- */
+.ventajas-banner-title {
+  font-weight: 900;
+  color: var(--brand-orange);
+  font-size: 17px;
+  margin: 18px 0 8px 8px;
+  letter-spacing: 0.2px;
+}

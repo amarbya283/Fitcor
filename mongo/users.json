@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "688fd2fa0635da00ee57e882",
+    "email": "prueba@email.com",
+    "password": "$2a$10$WE3UwiuDIWSjt4cIvCKlV.mXGO0So2m1.66zeygRz.MEwMrbWdq9S",
+    "__v": 0
+  },
+  {
+    "_id": "687a59a0b29caf00c4d1ebb4",
+    "email": "usuario1@example.com",
+    "password": "$2a$10$YRq6HEA19eq/yty7BXR0m.33HGcxHEO3X2iZ3DJusuUUXYbFE5AFm",
+    "__v": 0
+  },
+  {
+    "_id": "68ffb0d1165456d25c555d57",
+    "email": "test@email.com",
+    "password": "$2a$10$eyDvf0UZ1laIfPRRCdxwL.XdtsyQdENN8qtGlCbofTYgLlxvwrHou",
+    "__v": 0
+  },
+  {
+    "_id": "6a5d3929777cdf05d24ba055",
+    "email": "evaluador1@fitcor.fun",
+    "__v": 0,
+    "password": "$2a$10$vUIw7IFXc1I2Ghe8FxH0QOclKenDsy0ULPPalb6YnfiiUCGm.VRma"
+  },
+  {
+    "_id": "6a5d3929777cdf05d24ba056",
+    "email": "evaluador2@fitcor.fun",
+    "__v": 0,
+    "password": "$2a$10$pwbEypMW9jdxhrk3qmCoeOvGLNfvS.C9cS6xlpePdbGxAiaWKnLT."
+  },
+  {
+    "_id": "6a5d3929777cdf05d24ba057",
+    "email": "evaluador3@fitcor.fun",
+    "__v": 0,
+    "password": "$2a$10$bvT9i436c6SQAAB4tzICBuS3XtQJ1q9TmpkM.NNvK9y.iBIXLC9SC"
+  }
+]

@@ -1,0 +1,52 @@
+.coach-tips {
+  margin-bottom: 18px;
+}
+.coach-tips-title {
+  font-weight: 900;
+  color: var(--brand-orange);
+  font-size: 17px;
+  margin: 18px 0 8px 8px;
+  letter-spacing: 0.2px;
+}
+.tips-title {
+  font-weight: 700;
+  color: var(--brand-orange-dark);
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+}
+.tips-row {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+.tip-card {
+  background: #f6f6f8;
+  border-radius: 14px;
+  padding: 10px 4px;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.tip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.tip-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.tip-title {
+  font-size: 0.95rem;
+  color: #333;
+  text-align: center;
+}
+.coach-tips, .tip-card {
+  border-radius: 18px;
+  font-family: var(--font-body) !important;
+} 

@@ -1,0 +1,98 @@
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 62px;
+  box-shadow: 0 -6px 24px rgba(0,0,0,0.12);
+  z-index: 100;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: 0 8px;
+  gap: 0;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--brand-orange);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: var(--font-body);
+  flex: 1 1 0;
+  margin: 0;
+  padding: 0;
+  transition: background 0.2s;
+  position: relative;
+  height: 100%;
+  justify-content: center;
+}
+
+.nav-btn .nav-icon-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  margin-bottom: 2px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.nav-btn.active .nav-icon-bg {
+  background: linear-gradient(135deg, var(--brand-orange-dark), var(--brand-orange));
+  color: #fff;
+  box-shadow: var(--shadow-orange);
+  transform: translateY(-2px);
+}
+
+.nav-btn.active .nav-icon {
+  color: #fff;
+}
+
+.nav-btn .nav-icon {
+  font-size: 1.6rem;
+  color: var(--brand-orange);
+  transition: color 0.2s;
+}
+
+.nav-btn.active div {
+  color: var(--brand-orange);
+  font-weight: bold;
+}
+
+.nav-btn div {
+  font-size: 0.85rem;
+  margin-top: 2px;
+  color: #888;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+} 
+
+/* Por defecto: móvil */
+.bottom-nav {
+  height: 62px;
+  font-size: 13px;
+}
+@media (min-width: 601px) and (max-width: 1023px) {
+  .bottom-nav {
+    height: 70px;
+    font-size: 15px;
+  }
+}
+@media (min-width: 1024px) {
+  .bottom-nav {
+    height: 76px;
+    font-size: 16px;
+  }
+} 

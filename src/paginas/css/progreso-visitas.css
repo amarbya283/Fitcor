@@ -1,0 +1,75 @@
+/* Estilos propios de ProgresoVisitas (tarjetas de estadísticas e historial).
+   Prefijo: visitas- */
+
+.visitas-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.visitas-stat-card {
+  flex: 1;
+  background: #f6f7fb;
+  border-radius: var(--radius-md);
+  padding: 18px 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.visitas-stat-value {
+  font-size: 28px;
+  color: var(--brand-orange);
+  margin-bottom: 2px;
+}
+
+.visitas-stat-label {
+  color: #888;
+  font-size: 14px;
+}
+
+.visitas-historial-header {
+  font-weight: 900;
+  font-size: 16px;
+  background: #222;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.visitas-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.visitas-card-img {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  margin: 8px;
+}
+
+.visitas-card-body {
+  flex: 1;
+  padding: 0 8px;
+}
+
+.visitas-card-club {
+  font-weight: 900;
+  font-size: 15px;
+}
+
+.visitas-card-meta {
+  font-size: 13px;
+  color: #888;
+}
+
+.visitas-spacer {
+  height: 120px;
+}

@@ -1,0 +1,442 @@
+/* Estilos del Temporizador de intervalos (tipo HIIT). Prefijo temporizador- en
+   todas las clases para evitar colisiones con otros componentes globales. */
+
+.temporizador-page {
+  background: #111;
+  min-height: 100vh;
+  color: #fff;
+  font-family: var(--font-display);
+}
+
+.temporizador-content {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0 0 24px 0;
+  position: relative;
+}
+
+/* --- Pantalla final (entrenamiento completado) --- */
+
+.temporizador-fin {
+  background: #111;
+  min-height: 100vh;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+}
+
+.temporizador-fin-titulo {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 24px;
+}
+
+.temporizador-fin-salir {
+  background: var(--brand-purple);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 16px 40px;
+  font-weight: 900;
+  font-size: 18px;
+  margin-top: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* --- Cabecera (pantalla de cuenta atrás y de configuración) --- */
+
+.temporizador-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 18px 0 18px;
+}
+
+.temporizador-header--config {
+  justify-content: flex-start;
+}
+
+.temporizador-close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.temporizador-back-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.temporizador-header-time {
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+.temporizador-header-titulo {
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+
+.temporizador-header-square {
+  font-size: 22px;
+  color: #fff;
+  opacity: 0.5;
+}
+
+/* --- Contadores de ejercicio/ronda --- */
+
+.temporizador-contadores {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 32px 0 0 0;
+}
+
+.temporizador-contador {
+  text-align: center;
+}
+
+.temporizador-contador-valor {
+  font-weight: 900;
+  font-size: 28px;
+}
+
+.temporizador-contador-label {
+  font-weight: 700;
+  font-size: 13px;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+/* --- Anillo de progreso --- */
+
+.temporizador-ring-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0 0 0;
+}
+
+.temporizador-ring-inner {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.temporizador-ring-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Color según fase: naranja en esfuerzo, teal en descanso/reposo */
+.temporizador-fase-label {
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.temporizador-fase-label--esfuerzo {
+  color: var(--brand-orange);
+}
+
+.temporizador-fase-label--descanso {
+  color: var(--accent-teal);
+}
+
+.temporizador-ring-tiempo {
+  font-weight: 900;
+  font-size: 54px;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+/* Trazo animado del anillo de progreso (CircularProgress) */
+.temporizador-ring-progress {
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+/* --- Controles de reproducción (pausa/reanudar/siguiente) --- */
+
+.temporizador-controles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.temporizador-pausa-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 44px;
+  cursor: pointer;
+}
+
+.temporizador-play-btn {
+  background: none;
+  border: none;
+  color: var(--brand-purple);
+  font-size: 44px;
+  cursor: pointer;
+}
+
+.temporizador-siguiente-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 38px;
+  cursor: pointer;
+}
+
+/* --- Pantalla de configuración: tiempo previsto --- */
+
+.temporizador-previsto {
+  text-align: center;
+  margin: 32px 0 8px 0;
+}
+
+.temporizador-previsto-valor {
+  font-weight: 900;
+  font-size: 54px;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.temporizador-previsto-label {
+  color: var(--brand-orange);
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+/* --- Tarjetas de configuración --- */
+
+.temporizador-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin: 32px 0 24px 0;
+}
+
+.temporizador-card {
+  background: #222;
+  border-radius: var(--radius-md);
+  padding: 18px 16px 12px 16px;
+  min-width: 140px;
+  min-height: 90px;
+  flex: 1 1 120px;
+  max-width: 170px;
+  margin: 0;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.temporizador-card-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.temporizador-card-icono {
+  font-size: 22px;
+}
+
+.temporizador-card-icono--orange {
+  color: var(--brand-orange);
+}
+
+.temporizador-card-icono--teal {
+  color: var(--accent-teal);
+}
+
+.temporizador-card-icono--blanco {
+  color: #fff;
+}
+
+.temporizador-card-label {
+  font-weight: 700;
+}
+
+.temporizador-card-valor {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.temporizador-card-valor--orange {
+  color: var(--brand-orange);
+}
+
+.temporizador-card-valor--teal {
+  color: var(--accent-teal);
+}
+
+.temporizador-card-valor--blanco {
+  color: #fff;
+}
+
+/* Botón ✏️ anclado en la esquina inferior derecha de cada tarjeta */
+.temporizador-edit-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* --- Interruptor de sonido --- */
+
+.temporizador-sonido-wrap {
+  margin-top: 8px;
+}
+
+.temporizador-sonido-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.temporizador-sonido-checkbox {
+  display: none;
+}
+
+.temporizador-toggle {
+  width: 36px;
+  height: 20px;
+  border-radius: var(--radius-md);
+  background: #888;
+  display: inline-block;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.temporizador-toggle--activo {
+  background: var(--brand-orange);
+}
+
+.temporizador-toggle-knob {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 0.2s;
+}
+
+.temporizador-toggle-knob--activo {
+  left: 18px;
+}
+
+/* --- Botón COMENZAR --- */
+
+.temporizador-comenzar-btn {
+  width: 100%;
+  background: var(--brand-purple);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 16px 0;
+  font-weight: 900;
+  font-size: 18px;
+  margin-top: 18px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(124, 62, 237, 0.10);
+}
+
+/* --- Modal de edición de valores --- */
+
+.temporizador-modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.temporizador-modal {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 400px;
+  padding: 32px 0 16px 0;
+  text-align: center;
+  font-family: var(--font-display);
+}
+
+.temporizador-modal-titulo {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.temporizador-modal-input {
+  font-size: 28px;
+  font-weight: 900;
+  border: none;
+  border-bottom: 2px solid var(--brand-orange);
+  outline: none;
+  width: 80px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.temporizador-modal-hecho-btn {
+  background: var(--brand-purple);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.temporizador-modal-cancelar-btn {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}

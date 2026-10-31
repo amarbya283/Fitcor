@@ -1,0 +1,235 @@
+.insignias-container {
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: var(--font-display);
+}
+
+/* Tabs superiores */
+.insignias-tabs {
+  display: flex;
+  border-bottom: 1.5px solid #eee;
+  margin-bottom: 8px;
+}
+
+.insignias-tab {
+  flex: 1;
+  text-align: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: #222;
+  cursor: pointer;
+  padding: 12px 0 8px 0;
+  border-bottom: 4px solid transparent;
+  transition: all 0.2s;
+  letter-spacing: 0.2px;
+}
+
+.insignias-tab--activa {
+  color: var(--brand-orange);
+  border-bottom: 4px solid var(--brand-orange);
+}
+
+/* Próximo objetivo */
+.insignias-objetivo {
+  background: #f6f6f6;
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.insignias-objetivo-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.insignias-objetivo-img {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-orange);
+  object-fit: contain;
+}
+
+.insignias-objetivo-info {
+  flex: 1;
+}
+
+.insignias-objetivo-label {
+  font-weight: 900;
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.insignias-objetivo-bar {
+  height: 4px;
+  background: var(--brand-orange);
+  border-radius: 2px;
+  width: 120px;
+  margin: 6px 0 10px 0;
+}
+
+.insignias-objetivo-titulo {
+  font-weight: 900;
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.insignias-objetivo-desc {
+  color: #444;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+/* Rachas */
+.insignias-rachas {
+  background: #fff;
+  border-radius: var(--radius-md);
+  margin-bottom: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.insignias-rachas-label {
+  font-weight: 900;
+  font-size: 15px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.insignias-rachas-desc {
+  color: #444;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.insignias-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.insignias-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.insignias-img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-orange);
+  filter: grayscale(1) brightness(1.2);
+  border: 2.5px solid #eee;
+  margin-bottom: 4px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.insignias-img--conseguida {
+  filter: none;
+  border: 2.5px solid var(--brand-orange);
+}
+
+.insignias-item-titulo {
+  font-weight: 900;
+  font-size: 13px;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.insignias-item-titulo--conseguida {
+  color: #222;
+}
+
+.insignias-item-fecha {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Modal insignia grande */
+.insignias-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.insignias-modal {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 32px;
+  min-width: 240px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.insignias-modal-img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-orange);
+  filter: grayscale(1) brightness(1.2);
+  border: 5px solid #eee;
+  background: #fff;
+}
+
+.insignias-modal-img--conseguida {
+  filter: none;
+  border: 5px solid var(--brand-orange);
+}
+
+.insignias-modal-titulo {
+  font-weight: 900;
+  font-size: 22px;
+  color: #bbb;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.insignias-modal-titulo--conseguida {
+  color: #222;
+}
+
+.insignias-modal-fecha {
+  font-size: 16px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.insignias-modal-cerrar {
+  background: var(--brand-orange);
+  color: #fff;
+  font-weight: 900;
+  font-size: 17px;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 0;
+  width: 140px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+/* Espaciador para scroll extra */
+.insignias-spacer {
+  height: 120px;
+}

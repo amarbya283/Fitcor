@@ -1,0 +1,201 @@
+/* Estilos de la pantalla de Login/Registro (src/components/Login.js).
+   Todas las clases van prefijadas con "login-" para evitar colisiones con
+   otros componentes (ver historial de regresiones del proyecto). */
+
+/* Contenedor de página completa. El fondo es el elemento más grande de esta
+   pantalla (LCP), así que se sirve en WebP desde public/img con un nombre fijo,
+   lo que permite precargarlo desde index.html. Las URL llegan desde login.js en
+   variables CSS (usan PUBLIC_URL): en móvil la versión de 1080 px y en escritorio
+   la de 1920 px. El corte de 800 px coincide con los "media" de la precarga. */
+.login-page {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--login-bg-small) center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 801px) {
+  .login-page {
+    background-image: var(--login-bg-large);
+  }
+}
+
+.login-card {
+  background: rgba(15, 15, 15, 0.97);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 410px;
+  width: 95%;
+  padding: 38px 32px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.login-logo {
+  width: 260px;
+  margin-bottom: 18px;
+  margin-top: -10px;
+  filter: drop-shadow(0 2px 12px rgba(255, 145, 0, 0.25));
+}
+
+.login-title {
+  font-weight: 900;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.login-register-form {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.login-label {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  font-size: 15px;
+}
+
+.login-input-wrap {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--brand-orange);
+  background: #181818;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+/* Modificador para los inputs de login (email y contraseña), que llevan
+   sombra propia además de la de la tarjeta. */
+.login-input--shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Modificador para el email de registro, que no está envuelto en
+   .login-input-wrap y necesita su propio margen inferior. */
+.login-input--spaced {
+  margin-bottom: 16px;
+}
+
+.login-eye-toggle {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--brand-orange);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.login-remember-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.login-checkbox {
+  accent-color: var(--brand-orange);
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.login-remember-label {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.login-error {
+  color: #e53935;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* Modificador para el error del formulario de login, que además centra el texto. */
+.login-error--center {
+  text-align: center;
+}
+
+/* Texto casi negro sobre el naranja de marca: el blanco solo daba un contraste
+   de 2,36:1 (Lighthouse lo suspende); #111 da unos 7,4:1 y conserva el color de marca. */
+.login-btn-primary {
+  width: 100%;
+  background: var(--brand-orange);
+  color: #111;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 14px 0;
+  font-weight: 900;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-orange);
+  letter-spacing: 1px;
+}
+
+.login-btn-primary:disabled {
+  cursor: not-allowed;
+}
+
+/* El texto naranja de marca sobre blanco daba 2,36:1; un naranja más oscuro
+   (#B35600) llega a 4,9:1 y supera el mínimo de 4,5:1 para texto de 16px. */
+.login-btn-guest {
+  width: 100%;
+  background: #fff;
+  color: #B35600;
+  border: 2px solid var(--brand-orange);
+  border-radius: var(--radius-md);
+  padding: 14px 0;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.login-bottom-wrap {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.login-toggle-link {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* Modificador para "Volver al login", que lleva margen superior extra. */
+.login-toggle-link--spaced {
+  margin-top: 10px;
+}
+
+.login-toggle-highlight {
+  color: var(--brand-orange);
+}
